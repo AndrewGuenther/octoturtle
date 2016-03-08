@@ -1,0 +1,25 @@
+{
+  "name": "octoturtle",
+  "version": "0.0.1",
+  "description": "Set up auditing rules for your Github repository",
+  "main": "octoturtle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://www.gitub.com/AndrewGuenther/octoturtle.git"
+  },
+  "keywords": [
+    "github",
+    "auditing",
+    "bot",
+    "turtle"
+  ],
+  "author": "Andrew Guenther",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.13.4",
+    "request": "^2.69.0"
+  }
+}

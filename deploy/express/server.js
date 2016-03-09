@@ -1,32 +1,48 @@
 // Express server
-var app = require('express')();
+var express = require('express');
+var bodyparser = require('body-parser')
+var crypto = require('crypto');
 
-var octoturtle = require('../../octoturtle.js');
+module.exports = function(hooks, config) {
+  var app = express();
+/*
+  app.use(function(req, res, next) {
+      var data = '';
+      req.on('data', function(chunk) {
+          data += chunk;
+      });
+      req.on('end', function() {
+          req.rawBody = data;
+          next();
+      });
+  });
+  */
+  app.use(bodyparser.json());
 
-const PORT = 80;
-const PATH = '/webhook';
-const HOOK_SECRET = 'secret';
+  app.post(config.HOOK_PATH, function(req, res) {
+    /*
+    var signature = 'sha1=' + crypto.createHmac('sha1', config.HOOK_SECRET).update(req.rawBody).digest('hex');
+    if (req.get('X-Hub-Signature') != signature) {
+      res.status(401).send({error: "Invalid signature"});
+      console.log("Expected: " + signature);
+      console.log("Received: " + req.get('X-Hub-Signature'));
+      return;
+    }
+    */
 
-app.get(PATH, function(req, res) {
-  if (req.get('X-Hub-Signature') != HOOK_SECRET) {
-    res.status(401).send({error: "Invalid signature"});
-  }
+    var event = req.get('X-GitHub-Event');
+    if (event == undefined) {
+      res.status(400).send({error: "Missing event header"});
+      return;
+    }
 
-  var event = req.get('X-GitHub-Event');
-  if (event == undefined) {
-    res.status(400).send({error: "Missing event header"});
-  }
+    console.log("Valid hook received");
+    res.status(204).send();
+    hooks.forEach(function(hook) {
+      console.log("Evaluating hook");
+      hook.eval(event, req.body);
+    });
+  })
 
-  try {
-    var payload = JSON.parse(req.body);
-  } catch (e) {
-    res.status(400).send({error: "Malformed request payload"});
-  }
-
-  octoturtle.process(event, payload);
-  res.status(204).send();
-})
-
-app.listen(PORT, function() {
-  console.log("Server listening on: localhost:%s", port);
-})
+  return app;
+}

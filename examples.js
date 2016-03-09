@@ -1,14 +1,20 @@
-var octoturtle = require("./octoturtle.js");
-var actions = octoturtle.actions;
-var conditions = octoturtle.conditions;
+var octoturtle = require('./octoturtle.js');
+var config = require('./config.json');
+var app = require('./deploy/express/server.js');
 
-var hook = octoturtle.WhenAn("issue").is("opened").to("Accelerator")
-    .by("AndrewGuenther");
+var github = octoturtle.Github(config.GITHUB_USER, config.GITHUB_TOKEN);
 
-hook.do(conditions.when(), actions.addLabel());
+var hook = octoturtle.WhenAn('issues').is('opened').to('octoturtle')
+    .by('AndrewGuenther');
+
+hook.do(github.applyLabels(['enhancement']));
 
 function bodyContainsDibs(event, payload) {
-
+  payload.getIssueBody().includes('dibs');
 }
 
-hook.do(actions.applyLabel('dibs')).when(bodyContainsDibs);
+hook.when(bodyContainsDibs, github.applyLabels(['dibs']));
+
+app([hook], config).listen(4637, '127.0.0.1', function() {
+  console.log('server has started');
+});

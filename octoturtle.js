@@ -4,11 +4,8 @@ function buildHook(event) {
   return new Hook(event);
 }
 
-var octoturtle = {
+module.exports = {
   WhenA: buildHook,
   WhenAn: buildHook,
-  Conditions: require('./lib/conditions.js'),
-  Actions: require('./lib/actions.js'),
+  Github: require('./lib/github.js')
 }
-
-module.exports = octoturtle;

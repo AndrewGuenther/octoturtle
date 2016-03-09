@@ -4,7 +4,8 @@
   "description": "Set up auditing rules for your Github repository",
   "main": "octoturtle.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,12 @@
     "express-x-hub": "^1.0.4",
     "object-assign": "^4.0.1",
     "request": "^2.69.0"
+  },
+  "devDependencies": {
+    "eslint": "^2.3.0",
+    "eslint-config-google": "^0.4.0"
+  },
+  "eslintConfig": {
+    "extends": "google"
   }
 }

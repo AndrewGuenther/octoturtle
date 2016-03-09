@@ -3,7 +3,7 @@ var config = require('./config.json');
 
 var github = octoturtle.github(config.GITHUB_USER, config.GITHUB_TOKEN);
 
-var hook = octoturtle.WhenAn('issues').is('opened').to('octoturtle')
+var hook = octoturtle.whenAn('issues').is('opened').to('octoturtle')
     .by('AndrewGuenther');
 
 hook.do(github.applyLabels(['enhancement']));

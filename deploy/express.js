@@ -7,13 +7,13 @@ module.exports = function(hooks, config) {
   var app = express();
 
   if (config.VALIDATE_SECRET) {
-    app.use(xhub({ algorithm: 'sha1', secret: config.HOOK_SECRET}));
+    app.use(xhub({algorithm: 'sha1', secret: config.HOOK_SECRET}));
   }
   app.use(bodyparser.json());
 
   app.post(config.HOOK_PATH, function(req, res) {
     var event = req.get('X-GitHub-Event');
-    if (event == undefined) {
+    if (event === undefined) {
       res.status(400).send({error: "Missing event header"});
       return;
     }
@@ -24,7 +24,7 @@ module.exports = function(hooks, config) {
       console.log("Evaluating hook");
       hook.eval(event, req.body);
     });
-  })
+  });
 
   return app;
-}
+};

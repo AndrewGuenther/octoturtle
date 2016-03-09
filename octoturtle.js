@@ -5,8 +5,8 @@ function buildHook(event) {
 }
 
 module.exports = {
-  WhenA: buildHook,
-  WhenAn: buildHook,
+  whenA: buildHook,
+  whenAn: buildHook,
   github: require('./lib/github.js'),
   express: require('./deploy/express.js')
-}
+};

@@ -4,7 +4,7 @@
   "description": "Set up auditing rules for your Github repository",
   "main": "octoturtle.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jasmine",
     "lint": "eslint .",
     "docs": "jsdoc octoturtle.js lib deploy -d docs --pedantic"
   },
@@ -30,6 +30,7 @@
   "devDependencies": {
     "eslint": "^2.3.0",
     "eslint-config-google": "^0.4.0",
+    "jasmine": "^2.4.1",
     "jsdoc": "^3.4.0"
   },
   "eslintConfig": {

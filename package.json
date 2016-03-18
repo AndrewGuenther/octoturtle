@@ -5,7 +5,7 @@
   "main": "octoturtle.js",
   "scripts": {
     "all": "npm run lint && npm test && npm run docs",
-    "test": "istanbul cover -x **/docs/** --include-all-sources jasmine JASMINE_CONFIG_PATH=test/jasmine.json",
+    "test": "istanbul cover jasmine JASMINE_CONFIG_PATH=test/jasmine.json",
     "lint": "eslint .",
     "docs": "jsdoc octoturtle.js lib deploy -d docs --pedantic"
   },

@@ -2,4 +2,5 @@ instrumentation:
   excludes:
     - "**/docs/**"
     - "lib/payload.js"
+    - "examples.js"
   include-all-sources: true

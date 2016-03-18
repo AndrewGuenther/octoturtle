@@ -4,7 +4,8 @@
   "description": "Set up auditing rules for your Github repository",
   "main": "octoturtle.js",
   "scripts": {
-    "test": "istanbul cover --include-all-sources jasmine JASMINE_CONFIG_PATH=test/jasmine.json",
+    "all": "npm run lint && npm test && npm run docs",
+    "test": "istanbul cover -x **/docs/** --include-all-sources jasmine JASMINE_CONFIG_PATH=test/jasmine.json",
     "lint": "eslint .",
     "docs": "jsdoc octoturtle.js lib deploy -d docs --pedantic"
   },

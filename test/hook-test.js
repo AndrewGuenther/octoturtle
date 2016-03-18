@@ -1,6 +1,6 @@
 var Hook = require('../lib/hook.js');
 
-describe('A set of conditions and reactions to a payload',function() {
+describe('A set of conditions and reactions to a payload', function() {
   it('is a fluent interface', function() {
     var hook = new Hook('issues');
     expect(hook.is()).toBe(hook);

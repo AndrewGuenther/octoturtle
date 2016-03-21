@@ -25,17 +25,19 @@ describe('Generates Github API reactions for hooks', function() {
 
   it('builds functions to apply labels', function() {
     var reaction = github.applyLabels(['test']);
-    reaction('issues', Hook.extendPayload(buildResponse('issuesopened')));
+    var response = buildResponse('issuesopened');
+    reaction('issues', Hook.extendPayload(response));
     expect(github.sendRequest).toHaveBeenCalledWith(
-        'repos/baxterthehacker/public-repo/issues/2/labels',
+        response.issue.labels_url,
         ['test']);
   })
 
   it('builds functions to send comments', function() {
     var reaction = github.addComment('test');
-    reaction('issues', Hook.extendPayload(buildResponse('issuesopened')));
+    var response = buildResponse('issuesopened');
+    reaction('issues', Hook.extendPayload(response));
     expect(github.sendRequest).toHaveBeenCalledWith(
-        'repos/baxterthehacker/public-repo/issues/2/comments',
+        response.issue.comments_url,
         'test');
   })
 })

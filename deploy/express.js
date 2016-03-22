@@ -14,7 +14,7 @@ var xhub = require('express-x-hub');
 module.exports = function(hooks, config) {
   var app = express();
 
-  if (config.VALIDATE_SECRET) {
+  if (config.HOOK_SECRET) {
     app.use(xhub({algorithm: 'sha1', secret: config.HOOK_SECRET}));
   }
   app.use(bodyparser.json());

@@ -28,6 +28,7 @@
     "request": "^2.69.0"
   },
   "devDependencies": {
+    "coveralls": "^2.11.9",
     "eslint": "^2.3.0",
     "eslint-config-google": "^0.4.0",
     "istanbul": "^0.4.2",

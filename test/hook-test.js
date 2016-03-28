@@ -7,7 +7,7 @@ describe('A set of conditions and reactions to a payload', function() {
     expect(hook.to()).toBe(hook);
     expect(hook.by()).toBe(hook);
     expect(hook.do()).toBe(hook);
-    expect(hook.when()).toBe(hook);
+    expect(hook.if()).toBe(hook);
   });
 
   it('can respond to a specific event', function() {
@@ -47,13 +47,13 @@ describe('A set of conditions and reactions to a payload', function() {
 
   it('can perform actions only when certain conditions are met', function() {
     var evaluated = false;
-    var hook = new Hook('issues').when(function() {return true;},
+    var hook = new Hook('issues').if(function() {return true;},
         function() { evaluated = true; });
     expect(hook.eval('issues', {})).toBe(true);
     expect(evaluated).toBe(true);
 
     evaluated = false;
-    hook = new Hook('issues').when(function() {return false;},
+    hook = new Hook('issues').if(function() {return false;},
         function() { evaluated = true; });
     expect(hook.eval('issues', {})).toBe(false);
     expect(evaluated).toBe(false);

@@ -3,11 +3,13 @@
   "version": "0.0.1",
   "description": "Set up auditing rules for your Github repository",
   "main": "octoturtle.js",
+  "engines" : { "node" : ">=5.0.0" },
   "scripts": {
     "all": "npm run lint && npm test && npm run docs",
     "test": "istanbul cover jasmine JASMINE_CONFIG_PATH=test/jasmine.json",
     "lint": "eslint .",
-    "docs": "jsdoc octoturtle.js lib deploy README.md package.json -d docs --pedantic"
+    "docs": "jsdoc octoturtle.js lib deploy README.md package.json -d docs --pedantic",
+    "coveralls": "coveralls < ./coverage/lcov.info"
   },
   "repository": {
     "type": "git",

@@ -6,10 +6,11 @@ var xhub = require('express-x-hub');
 
 /**
  * Builds a new express app which know how to evaluate hooks.
- * @param  {Array} hooks  The hooks to be evaluated when the endpoint is called.
+ *
+ * @param  {Array}  hooks  The hooks to be evaluated when the endpoint is called.
  * @param  {Object} config Configuration information.
- * @return {Object} An express app object which can be started by calling
- *                  listen().
+ * @return {Object}        An express app object which can be started by calling
+ *                         listen().
  */
 module.exports = function(hooks, config) {
   var app = express();

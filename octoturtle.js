@@ -4,6 +4,7 @@ var Hook = require('./lib/hook.js');
 
 /**
  * Builder function for a new {@link Hook}.
+ *
  * @param  {String} event The type of event this hook is responding to.
  * @return {Hook} A new {@link Hook}.
  */

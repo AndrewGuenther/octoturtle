@@ -7,7 +7,7 @@
     "all": "npm run lint && npm test && npm run docs",
     "test": "istanbul cover jasmine JASMINE_CONFIG_PATH=test/jasmine.json",
     "lint": "eslint .",
-    "docs": "jsdoc octoturtle.js lib deploy -d docs --pedantic"
+    "docs": "jsdoc octoturtle.js lib deploy README.md package.json -d docs --pedantic"
   },
   "repository": {
     "type": "git",

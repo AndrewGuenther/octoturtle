@@ -28,4 +28,19 @@ describe('Generates Github API reactions for hooks', function() {
         response.issue.comments_url,
         'test');
   });
+
+  it('builds functions to post statuses', function() {
+    var status = {
+      state: 'success',
+      target_url: 'http://www.github.com/AndrewGuenther/octoturtle',
+      description: 'Tests are passing!',
+      context: 'octoturtle'
+    };
+    var reaction = github.postStatus(status.state, status.target_url,
+        status.description, status.context);
+    var response = buildResponse('propened');
+    reaction('pull_request', Hook.extendPayload(response));
+    expect(github.sendRequest).toHaveBeenCalledWith(
+        response.pull_request.statuses_url, status);
+  });
 });

@@ -54,6 +54,9 @@
       "valid-jsdoc": ["error", {
           "requireReturnDescription": false,
           "requireReturn": false
+      }],
+      "camelcase": ["error", {
+        "properties": "never"
       }]
     }
   }

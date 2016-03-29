@@ -14,6 +14,6 @@ describe('A rule-based system for reacting to Github activity', function() {
 
   it('provides a set of convenience function for interacting with Github',
       function() {
-    expect(Octoturtle.Github).toBe(require('../lib/github.js'));
-  });
+        expect(Octoturtle.Github).toBe(require('../lib/github.js'));
+      });
 });

@@ -28,8 +28,8 @@ describe('A set of conditions and reactions to a payload', function() {
     expect(hook.repositories).toEqual(['AndrewGuenther/octoturtle']);
 
     hook.to('docker/docker', 'github/hubot');
-    expect(hook.repositories).toEqual(['AndrewGuenther/octoturtle', 'docker/docker',
-        'github/hubot']);
+    expect(hook.repositories).toEqual(['AndrewGuenther/octoturtle',
+        'docker/docker', 'github/hubot']);
   });
 
   it('can respond to certain submitters', function() {
@@ -47,15 +47,21 @@ describe('A set of conditions and reactions to a payload', function() {
 
   it('can perform actions only when certain conditions are met', function() {
     var evaluated = false;
-    var hook = new Hook('issues').if(function() {return true;},
-        function() { evaluated = true; });
+    var hook = new Hook('issues').if(function() {
+      return true;
+    }, function() {
+      evaluated = true;
+    });
     expect(hook.eval('issues', {})).toBe(true);
     expect(evaluated).toBe(true);
 
     evaluated = false;
-    hook = new Hook('issues').if(function() {return false;},
-        function() { evaluated = true; });
+    hook = new Hook('issues').if(function() {
+      return false;
+    }, function() {
+      evaluated = true;
+    });
     expect(hook.eval('issues', {})).toBe(false);
     expect(evaluated).toBe(false);
   });
-})
+});

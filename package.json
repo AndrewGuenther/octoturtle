@@ -41,6 +41,20 @@
     "minami": "^1.1.1"
   },
   "eslintConfig": {
-    "extends": "google"
+    "extends": "google",
+    "globals": {
+      "describe": false,
+      "it": false,
+      "expect": false,
+      "beforeEach": false,
+      "spyOn": false,
+      "buildResponse": false
+    },
+    "rules": {
+      "valid-jsdoc": ["error", {
+          "requireReturnDescription": false,
+          "requireReturn": false
+      }]
+    }
   }
 }

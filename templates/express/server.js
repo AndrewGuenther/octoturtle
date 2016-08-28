@@ -1,5 +1,3 @@
-/** @module deploy/express */
-
 var express = require('express');
 var bodyparser = require('body-parser');
 var xhub = require('express-x-hub');
@@ -27,10 +25,8 @@ module.exports = function(hooks, config) {
       return;
     }
 
-    console.log("Valid hook received");
     res.status(204).send();
     hooks.forEach(function(hook) {
-      console.log("Evaluating hook");
       hook.eval(event, req.body);
     });
   });

@@ -22,11 +22,6 @@ var octoturtle = {
   whenAn: buildHook,
 
   /**
-   * @see module:deploy/express
-   */
-  express: require('./deploy/express.js'),
-
-  /**
    * @see Github
    */
   Github: require('./lib/github.js')

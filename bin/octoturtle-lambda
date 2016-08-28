@@ -1,0 +1,47 @@
+#!/usr/bin/env node
+
+var colors = require('colors');
+var path = require('path');
+var program = require('commander');
+var process = require('process');
+
+var pkg = require('../package.json');
+require('./common/utils.js');
+
+program = attachCommonOptions(program);
+program
+  .option('-r, --aws-region [region]', 'AWS region to host lambda function. defaults to us-east-1')
+  .option('-b, --s3-bucket <bucket>', 'S3 bucket name for code upload. defaults to your app name')
+  .parse(process.argv);
+
+generateApp(program, lambdaTemplate);
+
+function lambdaTemplate(version, appName, destinationPath, args) {
+  // Write package.json
+  write(path.join(destinationPath, 'package.json'), JSON.stringify(
+      initPkg(version, appName, {}), null, 2) + '\n');
+
+  // Build config file
+  var config = {
+    'GITHUB_USER': args.ghUser,
+    'GITHUB_TOKEN': args.ghToken,
+    'HOOK_SECRET': args.hookSecret
+  };
+  write(path.join(destinationPath, 'config.json'),
+      JSON.stringify(config, null, 2) + '\n');
+
+  // Copy boilerplate
+  var settings = loadTemplate(path.join('lambda', 'settings.yml'));
+  settings = settings.replace(/\{name\}/g, appName);
+  settings = settings.replace(/\{region\}/g, args.awsRegion ? args.awsRegion : 'us-east-1');
+  settings = settings.replace(/\{bucket\}/g, args.s3Bucket ? args.s3Bucket : appName);
+  write(path.join(destinationPath, 'settings.yml'), settings);
+  var octoturtleAppPath = path.join(destinationPath, 'octoturtle');
+  mkdir(octoturtleAppPath, function() {
+    copy(path.join('lambda', 'octoturtle', 'handler.js'), path.join(octoturtleAppPath, 'handler.js'));
+    copy(path.join('lambda', 'octoturtle', 'hooks.js'), path.join(octoturtleAppPath, 'hooks.js'));
+    copy(path.join('lambda', 'octoturtle', 'index.js'), path.join(octoturtleAppPath, 'index.js'));
+    copy(path.join('lambda', 'octoturtle', 'settings.yml'), path.join(octoturtleAppPath, 'settings.yml'));
+    console.log('SUCCESS!'.green);
+  });
+}

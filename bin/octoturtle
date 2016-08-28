@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+var process = require('process');
+
+var pkg = require('../package.json');
+
+program
+  .version(pkg.version)
+  .command('lambda', 'generate a lambda boilerplate')
+  .command('express', 'generate express boilerplate')
+  .parse(process.argv);

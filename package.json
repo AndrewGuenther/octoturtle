@@ -10,7 +10,7 @@
     "all": "npm run lint && npm test && npm run docs",
     "test": "istanbul cover jasmine JASMINE_CONFIG_PATH=test/jasmine.json",
     "lint": "eslint .",
-    "docs": "jsdoc octoturtle.js lib deploy README.md package.json -d docs --pedantic -t node_modules/minami",
+    "docs": "jsdoc octoturtle.js lib README.md package.json -d docs --pedantic -t node_modules/minami",
     "coveralls": "coveralls < ./coverage/lcov.info"
   },
   "repository": {
@@ -27,6 +27,8 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "colors": "^1.1.2",
+    "commander": "https://registry.npmjs.org/commander/-/commander-2.9.0.tgz",
     "express": "^4.13.4",
     "express-x-hub": "^1.0.4",
     "request": "^2.69.0"
@@ -42,22 +44,23 @@
   },
   "eslintConfig": {
     "extends": "google",
-    "globals": {
-      "describe": false,
-      "it": false,
-      "expect": false,
-      "beforeEach": false,
-      "spyOn": false,
-      "buildResponse": false
+    "env": {
+      "jasmine": true
     },
     "rules": {
-      "valid-jsdoc": ["error", {
+      "valid-jsdoc": [
+        "error",
+        {
           "requireReturnDescription": false,
           "requireReturn": false
-      }],
-      "camelcase": ["error", {
-        "properties": "never"
-      }]
+        }
+      ],
+      "camelcase": [
+        "error",
+        {
+          "properties": "never"
+        }
+      ]
     }
   }
 }

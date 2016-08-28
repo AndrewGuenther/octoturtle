@@ -8,11 +8,7 @@ describe('A rule-based system for reacting to Github activity', function() {
     expect(Octoturtle.whenA).toBe(Octoturtle.whenAn);
   });
 
-  it('provides an Express server out of the box', function() {
-    expect(Octoturtle.express).toBe(require('../deploy/express.js'));
-  });
-
-  it('provides a set of convenience function for interacting with Github',
+  it('provides a set of convenience functions for interacting with Github',
       function() {
         expect(Octoturtle.Github).toBe(require('../lib/github.js'));
       });

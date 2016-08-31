@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>lib/payload.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Github.html">Github</a><ul class='methods'><li data-type='method'><a href="Github.html#addComment">addComment</a></li><li data-type='method'><a href="Github.html#applyLabels">applyLabels</a></li><li data-type='method'><a href="Github.html#postStatus">postStatus</a></li><li data-type='method'><a href="Github.html#sendRequest">sendRequest</a></li></ul></li><li><a href="Hook.html">Hook</a><ul class='methods'><li data-type='method'><a href="Hook.html#by">by</a></li><li data-type='method'><a href="Hook.html#do">do</a></li><li data-type='method'><a href="Hook.html#eval">eval</a></li><li data-type='method'><a href="Hook.html#if">if</a></li><li data-type='method'><a href="Hook.html#is">is</a></li><li data-type='method'><a href="Hook.html#to">to</a></li></ul></li><li><a href="Payload.html">Payload</a><ul class='methods'><li data-type='method'><a href="Payload.html#.extendPayload">extendPayload</a></li><li data-type='method'><a href="Payload.html#getAction">getAction</a></li><li data-type='method'><a href="Payload.html#getCommentBody">getCommentBody</a></li><li data-type='method'><a href="Payload.html#getCommentUrl">getCommentUrl</a></li><li data-type='method'><a href="Payload.html#getIssueBody">getIssueBody</a></li><li data-type='method'><a href="Payload.html#getIssueNumber">getIssueNumber</a></li><li data-type='method'><a href="Payload.html#getIssueUrl">getIssueUrl</a></li><li data-type='method'><a href="Payload.html#getLabelUrl">getLabelUrl</a></li><li data-type='method'><a href="Payload.html#getRepo">getRepo</a></li><li data-type='method'><a href="Payload.html#getRepoOwner">getRepoOwner</a></li><li data-type='method'><a href="Payload.html#getRepoUrl">getRepoUrl</a></li><li data-type='method'><a href="Payload.html#getSender">getSender</a></li><li data-type='method'><a href="Payload.html#getStatusUrl">getStatusUrl</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-octoturtle.html">octoturtle</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">lib/payload.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Wrapper for a webhook payload. Provides a set of convenience functions for
+ * accessing commonly used fields. Further documentation on webhook payloads can
+ * be found here:
+ *
+ * @class
+ */
+function Payload() {}
+
+/**
+ * Takes in a simple Github payload object and creates a {@link Payload}.
+ *
+ * @param  {Object}  payload Raw Github webhook payload
+ * @return {Payload}         An extended Payload object with accessor functions.
+ */
+Payload.extendPayload = function(payload) {
+  return Object.setPrototypeOf(payload, Payload.prototype);
+};
+
+/**
+ * @return {String} The 'action' field of the payload.
+ */
+Payload.prototype.getAction = function() {
+  return this.action;
+};
+
+/**
+ * @return {String}  The full name of the repository in the form of
+ * "UserName/repository".
+ */
+Payload.prototype.getRepo = function() {
+  return this.repository.name;
+};
+
+/**
+ * @return {String}  The user name of the repository owner.
+ */
+Payload.prototype.getRepoOwner = function() {
+  return this.repository.owner.login;
+};
+
+/**
+ * @return {String}  The requester of the issue or pull request.
+ */
+Payload.prototype.getSender = function() {
+  return this.sender.login;
+};
+
+/**
+ * @return {int}  The issue number.
+ */
+Payload.prototype.getIssueNumber = function() {
+  return this.issue.number;
+};
+
+/**
+ * @return {String}  The body text of the issue.
+ */
+Payload.prototype.getIssueBody = function() {
+  return this.issue.body;
+};
+
+/**
+ * @return {String}  The body text of the comment.
+ */
+Payload.prototype.getCommentBody = function() {
+  return this.comment.body;
+};
+
+/**
+ * @return {String}  The API url for the repository.
+ */
+Payload.prototype.getRepoUrl = function() {
+  return this.repository.url;
+};
+
+/**
+ * @return {String}  The API url for the issue.
+ */
+Payload.prototype.getIssueUrl = function() {
+  return this.issue.url;
+};
+
+/**
+ * @return {String}  The API url for the issue's labels.
+ */
+Payload.prototype.getLabelUrl = function() {
+  return this.issue.labels_url;
+};
+
+/**
+ * @return {String}  The API url for the comments on an issue.
+ */
+Payload.prototype.getCommentUrl = function() {
+  return this.issue.comments_url;
+};
+
+/**
+ * @return {String} The API url for the status of a PR.
+ */
+Payload.prototype.getStatusUrl = function() {
+  return this.pull_request.statuses_url;
+};
+
+module.exports = Payload;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Aug 30 2016 22:37:16 GMT-0700 (PDT) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

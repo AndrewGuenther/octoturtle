@@ -1,0 +1,21 @@
+{
+  "extends": "google",
+  "env": {
+    "jasmine": true
+  },
+  "rules": {
+    "valid-jsdoc": [
+      "error",
+      {
+        "requireReturnDescription": false,
+        "requireReturn": false
+      }
+    ],
+    "camelcase": [
+      "error",
+      {
+        "properties": "never"
+      }
+    ]
+  }
+}

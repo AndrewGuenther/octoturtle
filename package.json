@@ -10,7 +10,7 @@
     "all": "npm run lint && npm test && npm run docs",
     "test": "istanbul cover jasmine JASMINE_CONFIG_PATH=test/jasmine.json",
     "lint": "eslint .",
-    "docs": "jsdoc octoturtle.js lib README.md package.json -d docs --pedantic -t node_modules/minami",
+    "docs": "jsdoc -c .jsdoc.json",
     "coveralls": "coveralls < ./coverage/lcov.info"
   },
   "repository": {
@@ -41,26 +41,5 @@
     "jasmine": "^2.4.1",
     "jsdoc": "^3.4.0",
     "minami": "^1.1.1"
-  },
-  "eslintConfig": {
-    "extends": "google",
-    "env": {
-      "jasmine": true
-    },
-    "rules": {
-      "valid-jsdoc": [
-        "error",
-        {
-          "requireReturnDescription": false,
-          "requireReturn": false
-        }
-      ],
-      "camelcase": [
-        "error",
-        {
-          "properties": "never"
-        }
-      ]
-    }
   }
 }

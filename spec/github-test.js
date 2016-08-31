@@ -1,5 +1,6 @@
 var Github = require('../lib/github.js');
 var Hook = require('../lib/payload.js');
+require('./helpers/response-helper.js');
 
 describe('Generates Github API reactions for hooks', function() {
   var github;

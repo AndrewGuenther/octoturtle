@@ -3,11 +3,6 @@
         "allowUnknownTags": true,
         "dictionaries": ["jsdoc"]
     },
-    "source": {
-        "include": ["lib", "octoturtle.js", "README.md"],
-        "includePattern": ".js$",
-        "excludePattern": "(node_modules/|docs)"
-    },
     "plugins": [
         "plugins/markdown"
     ],

@@ -7,11 +7,11 @@
     "node": ">=5.0.0"
   },
   "scripts": {
-    "all": "npm run lint && npm test && npm run docs",
-    "test": "istanbul cover jasmine",
-    "lint": "eslint .",
-    "docs": "jsdoc -c .jsdoc.json",
-    "coveralls": "coveralls < ./coverage/lcov.info"
+    "all": "gulp",
+    "test": "gulp test",
+    "lint": "gulp lint",
+    "docs": "gulp docs",
+    "coveralls": "gulp coveralls"
   },
   "repository": {
     "type": "git",
@@ -37,6 +37,12 @@
     "coveralls": "^2.11.9",
     "eslint": "^2.3.0",
     "eslint-config-google": "^0.4.0",
+    "gulp": "^3.9.1",
+    "gulp-coveralls": "^0.1.4",
+    "gulp-eslint": "^3.0.1",
+    "gulp-istanbul": "^1.1.1",
+    "gulp-jasmine": "^2.4.0",
+    "gulp-jsdoc3": "^0.3.0",
     "istanbul": "^0.4.2",
     "jasmine": "^2.4.1",
     "jsdoc": "^3.4.0",

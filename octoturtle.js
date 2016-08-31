@@ -8,23 +8,11 @@ var Hook = require('./lib/hook.js');
  * @param  {String} event The type of event this hook is responding to.
  * @return {Hook} A new {@link Hook}.
  */
-function buildHook(event) {
+module.exports = function(event) {
   return new Hook(event);
-}
-
-/**
- * @borrows module:octoturtle~buildHook as whenAn
- * @borrows module:octoturtle~buildHook as whenA
- * @namespace octoturtle
- */
-var octoturtle = {
-  whenA: buildHook,
-  whenAn: buildHook,
-
-  /**
-   * @see Github
-   */
-  Github: require('./lib/github.js')
 };
 
-module.exports = octoturtle;
+/**
+ * @see Github
+ */
+module.exports.Github = require('./lib/github.js');

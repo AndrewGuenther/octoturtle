@@ -2,7 +2,7 @@
   "name": "octoturtle",
   "version": "0.0.1",
   "description": "Set up auditing rules for your Github repository",
-  "main": "octoturtle.js",
+  "main": "./dist/octoturtle.js",
   "engines": {
     "node": ">=5.0.0"
   },
@@ -34,10 +34,12 @@
     "request": "^2.69.0"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.14.0",
     "coveralls": "^2.11.9",
     "eslint": "^2.3.0",
     "eslint-config-google": "^0.4.0",
     "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
     "gulp-coveralls": "^0.1.4",
     "gulp-eslint": "^3.0.1",
     "gulp-istanbul": "^1.1.1",

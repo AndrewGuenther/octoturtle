@@ -1,4 +1,4 @@
-var octoturtle = require('../octoturtle.js');
+var octoturtle = require('../lib/octoturtle.js');
 var whenA = octoturtle;
 var Hook = require('../lib/hook.js');
 

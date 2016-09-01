@@ -4,9 +4,21 @@ const jasmine = require('gulp-jasmine');
 const istanbul = require('gulp-istanbul');
 const eslint = require('gulp-eslint');
 const coveralls = require('gulp-coveralls');
+const babel = require('gulp-babel');
+
+const SOURCES = ['./lib/**/*.js'];
+const TEST_SOURCES = ['./spec/**/*.js'];
+
+gulp.task('build', () => {
+  return gulp.src(SOURCES)
+      .pipe(babel({
+          presets: ['es2015']
+      }))
+      .pipe(gulp.dest('dist'));
+});
 
 gulp.task('docs', (cb) => {
-  return gulp.src(['README.md', 'octoturtle.js', './lib/**/*.js'], {read: false})
+  return gulp.src(['README.md'].concat(SOURCES), {read: false})
       .pipe(jsdoc(require('./.jsdoc.json'), cb));
 });
 
@@ -23,7 +35,7 @@ gulp.task('test', ['pre-test'], () => {
 });
 
 gulp.task('lint', () => {
-  return gulp.src(['octoturtle.js', './lib/**/*.js','./spec/**/*.js'])
+  return gulp.src([].concat(SOURCES, TEST_SOURCES))
       .pipe(eslint())
       .pipe(eslint.format())
       .pipe(eslint.failAfterError());
@@ -35,3 +47,4 @@ gulp.task('coveralls', () => {
 });
 
 gulp.task('default', ['lint', 'test']);
+gulp.task('dist', ['lint', 'test', 'docs', 'build']);

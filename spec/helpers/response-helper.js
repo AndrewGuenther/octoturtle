@@ -10,5 +10,5 @@ function buildResponse(response) {
 }
 
 module.exports = {
-  buildResponse: buildResponse
+  buildResponse,
 };

@@ -18,24 +18,24 @@ gulp.task('build', () => {
 });
 
 gulp.task('docs', (cb) => {
-  return gulp.src(['README.md'].concat(SOURCES), {read: false})
+  return gulp.src(['README.md', ...SOURCES], {read: false})
       .pipe(jsdoc(require('./.jsdoc.json'), cb));
 });
 
 gulp.task('pre-test', () => {
-  return gulp.src(['octoturtle.js', './lib/**/*.js'])
+  return gulp.src(SOURCES)
       .pipe(istanbul())
       .pipe(istanbul.hookRequire())
 });
 
 gulp.task('test', ['pre-test'], () => {
-  return gulp.src(['spec/*.js'])
+  return gulp.src(TEST_SOURCES)
       .pipe(jasmine())
       .pipe(istanbul.writeReports())
 });
 
 gulp.task('lint', () => {
-  return gulp.src([].concat(SOURCES, TEST_SOURCES))
+  return gulp.src([...SOURCES, ...TEST_SOURCES])
       .pipe(eslint())
       .pipe(eslint.format())
       .pipe(eslint.failAfterError());

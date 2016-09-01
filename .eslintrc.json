@@ -1,21 +1,10 @@
 {
-  "extends": "google",
+  "extends": "airbnb",
   "env": {
     "jasmine": true
   },
   "rules": {
-    "valid-jsdoc": [
-      "error",
-      {
-        "requireReturnDescription": false,
-        "requireReturn": false
-      }
-    ],
-    "camelcase": [
-      "error",
-      {
-        "properties": "never"
-      }
-    ]
+    "no-console": "off",
+    "arrow-body-style": ["error", "always"]
   }
 }

@@ -1,15 +1,17 @@
-var octoturtle = require('../lib/octoturtle.js');
-var whenA = octoturtle;
-var Hook = require('../lib/hook.js');
+const octoturtle = require('../lib/octoturtle');
+const Hook = require('../lib/hook');
+const Github = require('../lib/github');
 
-describe('A rule-based system for reacting to Github activity', function() {
-  it('provides a fluent interface', function() {
-    var hook = whenA();
+const whenA = octoturtle;
+
+describe('A rule-based system for reacting to Github activity', () => {
+  it('provides a fluent interface', () => {
+    const hook = whenA();
     expect(hook instanceof Hook).toBe(true);
   });
 
   it('provides a set of convenience functions for interacting with Github',
-      function() {
-        expect(octoturtle.Github).toBe(require('../lib/github.js'));
+      () => {
+        expect(octoturtle.Github).toBe(Github);
       });
 });

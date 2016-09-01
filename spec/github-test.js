@@ -1,45 +1,45 @@
-var Github = require('../lib/github.js');
-var Hook = require('../lib/payload.js');
-var util = require('./helpers/response-helper.js');
+const Github = require('../lib/github');
+const Hook = require('../lib/payload');
+const util = require('./helpers/response-helper');
 
-describe('Generates Github API reactions for hooks', function() {
-  var github;
-  const USER = "AndrewGuenther";
-  const TOKEN = "sEcReT";
+describe('Generates Github API reactions for hooks', () => {
+  let github;
+  const USER = 'AndrewGuenther';
+  const TOKEN = 'sEcReT';
 
-  beforeEach(function() {
+  beforeEach(() => {
     github = new Github(USER, TOKEN);
     spyOn(github, 'sendRequest');
   });
 
-  it('builds functions to apply labels', function() {
-    var reaction = github.applyLabels(['test']);
-    var response = util.buildResponse('issuesopened');
+  it('builds functions to apply labels', () => {
+    const reaction = github.applyLabels(['test']);
+    const response = util.buildResponse('issuesopened');
     reaction('issues', Hook.extendPayload(response));
     expect(github.sendRequest).toHaveBeenCalledWith(
         response.issue.labels_url,
         ['test']);
   });
 
-  it('builds functions to send comments', function() {
-    var reaction = github.addComment('test');
-    var response = util.buildResponse('issuesopened');
+  it('builds functions to send comments', () => {
+    const reaction = github.addComment('test');
+    const response = util.buildResponse('issuesopened');
     reaction('issues', Hook.extendPayload(response));
     expect(github.sendRequest).toHaveBeenCalledWith(
         response.issue.comments_url,
         'test');
   });
 
-  it('builds functions to post statuses', function() {
-    var status = {
+  it('builds functions to post statuses', () => {
+    const status = {
       state: 'success',
       target_url: 'http://www.github.com/AndrewGuenther/octoturtle',
       description: 'Tests are passing!',
-      context: 'octoturtle'
+      context: 'octoturtle',
     };
-    var reaction = github.postStatus(status.state, status.target_url,
+    const reaction = github.postStatus(status.state, status.target_url,
         status.description, status.context);
-    var response = util.buildResponse('propened');
+    const response = util.buildResponse('propened');
     reaction('pull_request', Hook.extendPayload(response));
     expect(github.sendRequest).toHaveBeenCalledWith(
         response.pull_request.statuses_url, status);

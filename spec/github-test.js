@@ -1,6 +1,6 @@
 var Github = require('../lib/github.js');
 var Hook = require('../lib/payload.js');
-require('./helpers/response-helper.js');
+var util = require('./helpers/response-helper.js');
 
 describe('Generates Github API reactions for hooks', function() {
   var github;
@@ -14,7 +14,7 @@ describe('Generates Github API reactions for hooks', function() {
 
   it('builds functions to apply labels', function() {
     var reaction = github.applyLabels(['test']);
-    var response = buildResponse('issuesopened');
+    var response = util.buildResponse('issuesopened');
     reaction('issues', Hook.extendPayload(response));
     expect(github.sendRequest).toHaveBeenCalledWith(
         response.issue.labels_url,
@@ -23,7 +23,7 @@ describe('Generates Github API reactions for hooks', function() {
 
   it('builds functions to send comments', function() {
     var reaction = github.addComment('test');
-    var response = buildResponse('issuesopened');
+    var response = util.buildResponse('issuesopened');
     reaction('issues', Hook.extendPayload(response));
     expect(github.sendRequest).toHaveBeenCalledWith(
         response.issue.comments_url,
@@ -39,7 +39,7 @@ describe('Generates Github API reactions for hooks', function() {
     };
     var reaction = github.postStatus(status.state, status.target_url,
         status.description, status.context);
-    var response = buildResponse('propened');
+    var response = util.buildResponse('propened');
     reaction('pull_request', Hook.extendPayload(response));
     expect(github.sendRequest).toHaveBeenCalledWith(
         response.pull_request.statuses_url, status);

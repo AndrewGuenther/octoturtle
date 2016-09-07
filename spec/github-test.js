@@ -1,6 +1,11 @@
-const Github = require('../lib/github');
 const Hook = require('../lib/payload');
 const util = require('./helpers/response-helper');
+const proxyquire = require('proxyquire');
+
+const requestSpy = jasmine.createSpy();
+const Github = proxyquire('../lib/github', {
+  request: requestSpy,
+});
 
 describe('Generates Github API reactions for hooks', () => {
   let github;
@@ -43,5 +48,20 @@ describe('Generates Github API reactions for hooks', () => {
     reaction('pull_request', Hook.extendPayload(response));
     expect(github.sendRequest).toHaveBeenCalledWith(
         response.pull_request.statuses_url, status);
+  });
+
+  it('can send raw requests to the Github API', () => {
+    github = new Github(USER, TOKEN);
+    const expectedOptions = {
+      auth: { user: USER, pass: TOKEN },
+      method: 'POST',
+      json: true,
+      headers: { 'User-Agent': 'Octoturtle' },
+      url: 'https://api.github.com',
+      body: 'test!',
+    };
+    github.sendRequest(expectedOptions.url, expectedOptions.body);
+    expect(requestSpy).toHaveBeenCalledWith(
+        jasmine.objectContaining(expectedOptions), jasmine.any(Function));
   });
 });

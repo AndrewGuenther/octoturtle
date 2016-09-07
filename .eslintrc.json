@@ -5,6 +5,8 @@
   },
   "rules": {
     "no-console": "off",
-    "arrow-body-style": ["error", "always"]
+    "arrow-body-style": ["error", "always"],
+    "no-prototype-builtins": "off",
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
   }
 }

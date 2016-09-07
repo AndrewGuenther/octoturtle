@@ -10,8 +10,7 @@ describe('A rule-based system for reacting to Github activity', () => {
     expect(hook instanceof Hook).toBe(true);
   });
 
-  it('provides a set of convenience functions for interacting with Github',
-      () => {
-        expect(octoturtle.Github).toBe(Github);
-      });
+  it('provides a set of convenience functions for interacting with Github', () => {
+    expect(octoturtle.Github).toBe(Github);
+  });
 });

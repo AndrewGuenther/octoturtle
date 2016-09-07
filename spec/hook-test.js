@@ -10,6 +10,29 @@ describe('A set of conditions and reactions to a payload', () => {
     expect(hook.if()).toBe(hook);
   });
 
+  it('will not act on events it does not match', () => {
+    const hook = new Hook('issues')
+        .is('created')
+        .to('AndrewGuenther/octoturtle')
+        .by('AndrewGuenther')
+        .do(() => { return true; });
+    const payload = {
+      action: 'created',
+      repository: { name: 'AndrewGuenther/octoturtle' },
+      sender: { login: 'AndrewGuenther' },
+    };
+    expect(hook.eval('pull_request', payload)).toEqual(false);
+    expect(hook.eval('issues', Object.assign({}, payload, {
+      action: 'resolved',
+    }))).toEqual(false);
+    expect(hook.eval('issues', Object.assign({}, payload, {
+      repository: { name: 'gustave/gustave' },
+    }))).toEqual(false);
+    expect(hook.eval('issues', Object.assign({}, payload, {
+      sender: { login: 'michaellady' },
+    }))).toEqual(false);
+  });
+
   it('can respond to a specific event', () => {
     const hook = new Hook('issues');
     expect(hook.event).toBe('issues');

@@ -44,6 +44,9 @@
         Github
         </h2>
         
+            <div class="class-description"><p>A Github API wrapper which supplies multiple function generators for use with
+<a href="Hook.html"><code>Hook</code></a>s</p></div>
+        
     
 </header>
 
@@ -53,6 +56,8 @@
         
 
     
+    <h2>Constructor</h2>
+    
 
     <h4 class="name" id="Github"><span class="type-signature"></span>new Github<span class="signature">(user, token)</span><span class="type-signature"></span></h4>
 
@@ -61,8 +66,7 @@
 
 
 <div class="description">
-    <p>A Github API wrapper which supplies multiple function generators for use with
-<a href="Hook.html"><code>Hook</code></a>s</p>
+    <p>Create a new Github client</p>
 </div>
 
 
@@ -178,7 +182,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lib_github.js.html">lib/github.js</a>, <a href="lib_github.js.html#line24">line 24</a>
+        <a href="github.js.html">github.js</a>, <a href="github.js.html#line32">line 32</a>
     </li></ul></dd>
     
 
@@ -227,7 +231,7 @@
 
     
 
-    <h4 class="name" id="addComment"><span class="type-signature"></span>addComment<span class="signature">(comment)</span><span class="type-signature"> &rarr; {function}</span></h4>
+    <h4 class="name" id="addComment"><span class="type-signature"></span>addComment<span class="signature">(comment)</span><span class="type-signature"> &rarr; {<a href="Hook.html#~action">Hook~action</a>}</span></h4>
 
     
 
@@ -329,7 +333,7 @@ applies leaves a comment on the referenced issue or pull request</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lib_github.js.html">lib/github.js</a>, <a href="lib_github.js.html#line70">line 70</a>
+        <a href="github.js.html">github.js</a>, <a href="github.js.html#line86">line 86</a>
     </li></ul></dd>
     
 
@@ -368,7 +372,7 @@ applies leaves a comment on the referenced issue or pull request</p>
     </dt>
     <dd>
         
-<span class="param-type">function</span>
+<span class="param-type"><a href="Hook.html#~action">Hook~action</a></span>
 
 
     </dd>
@@ -383,7 +387,7 @@ applies leaves a comment on the referenced issue or pull request</p>
 
     
 
-    <h4 class="name" id="applyLabels"><span class="type-signature"></span>applyLabels<span class="signature">(labels)</span><span class="type-signature"> &rarr; {function}</span></h4>
+    <h4 class="name" id="applyLabels"><span class="type-signature"></span>applyLabels<span class="signature">(labels)</span><span class="type-signature"> &rarr; {<a href="Hook.html#~action">Hook~action</a>}</span></h4>
 
     
 
@@ -485,7 +489,7 @@ applies a set of labels to the referenced issue or pull request</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lib_github.js.html">lib/github.js</a>, <a href="lib_github.js.html#line56">line 56</a>
+        <a href="github.js.html">github.js</a>, <a href="github.js.html#line71">line 71</a>
     </li></ul></dd>
     
 
@@ -513,7 +517,7 @@ applies a set of labels to the referenced issue or pull request</p>
         
 <div class="param-desc">
     <p>A function which will apply the given labels to an
-                   issue or pull request referenced in the payload</p>
+                      issue or pull request referenced in the payload</p>
 </div>
 
 
@@ -524,7 +528,7 @@ applies a set of labels to the referenced issue or pull request</p>
     </dt>
     <dd>
         
-<span class="param-type">function</span>
+<span class="param-type"><a href="Hook.html#~action">Hook~action</a></span>
 
 
     </dd>
@@ -539,7 +543,7 @@ applies a set of labels to the referenced issue or pull request</p>
 
     
 
-    <h4 class="name" id="postStatus"><span class="type-signature"></span>postStatus<span class="signature">(state, targetUrl<span class="signature-attributes">opt</span>, description<span class="signature-attributes">opt</span>, context<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {function}</span></h4>
+    <h4 class="name" id="postStatus"><span class="type-signature"></span>postStatus<span class="signature">(state, targetUrl<span class="signature-attributes">opt</span>, description<span class="signature-attributes">opt</span>, context<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="Hook.html#~action">Hook~action</a>}</span></h4>
 
     
 
@@ -753,7 +757,7 @@ applies a set of labels to the referenced issue or pull request</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lib_github.js.html">lib/github.js</a>, <a href="lib_github.js.html#line90">line 90</a>
+        <a href="github.js.html">github.js</a>, <a href="github.js.html#line107">line 107</a>
     </li></ul></dd>
     
 
@@ -781,7 +785,7 @@ applies a set of labels to the referenced issue or pull request</p>
         
 <div class="param-desc">
     <p>A function which will post the given status to the pull
-                   request referenced in the payload.</p>
+                      request referenced in the payload.</p>
 </div>
 
 
@@ -792,7 +796,7 @@ applies a set of labels to the referenced issue or pull request</p>
     </dt>
     <dd>
         
-<span class="param-type">function</span>
+<span class="param-type"><a href="Hook.html#~action">Hook~action</a></span>
 
 
     </dd>
@@ -981,7 +985,7 @@ applies a set of labels to the referenced issue or pull request</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lib_github.js.html">lib/github.js</a>, <a href="lib_github.js.html#line40">line 40</a>
+        <a href="github.js.html">github.js</a>, <a href="github.js.html#line55">line 55</a>
     </li></ul></dd>
     
 
@@ -1025,7 +1029,7 @@ applies a set of labels to the referenced issue or pull request</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Aug 30 2016 22:37:16 GMT-0700 (PDT) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Sep 06 2016 19:19:42 GMT-0700 (PDT) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

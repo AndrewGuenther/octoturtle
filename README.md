@@ -11,12 +11,24 @@ specify and enforce a set of rules for contributing to a repository.
 Here's a simple Octoturtle rule based on Docker's #dibs policy for claiming
 issues:
 ```javascript
-WhenAn('issue_comment').is('created').if(issueBodyContainsDibs,
-    gh.applyLabels('issue/claimed'));
+const octoturtle = require('../lib/octoturtle.js');
+const config = require('./config.json');
 
-function issueBodyContainsDibs(event, payload) {
-  payload.getIssueBody().includes('#dibs');
+const WhenAn = WhenA = octoturtle;
+const github = new octoturtle.Github(config.GITHUB_USER, config.GITHUB_TOKEN);
+
+const hook = WhenAn('issues').is('opened').to('octoturtle');
+
+/**
+ * Checks if the body of the item contains the string "dibs".
+ * @param {String} event The type of event
+ * @param {Payload} payload The hook payload
+ */
+function bodyContainsDibs(event, payload) {
+  payload.getIssueBody().includes('dibs');
 }
+
+hook.if(bodyContainsDibs, github.applyLabels(['dibs']));
 ```
 
 [1]: https://developer.github.com/webhooks/

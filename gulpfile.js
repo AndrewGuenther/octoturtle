@@ -18,20 +18,20 @@ gulp.task('build', () => {
 });
 
 gulp.task('docs', (cb) => {
-  return gulp.src(['README.md', ...SOURCES], {read: false})
+  gulp.src(['README.md', ...SOURCES], {read: false})
       .pipe(jsdoc(require('./.jsdoc.json'), cb));
 });
 
 gulp.task('pre-test', () => {
   return gulp.src(SOURCES)
       .pipe(istanbul())
-      .pipe(istanbul.hookRequire())
+      .pipe(istanbul.hookRequire());
 });
 
 gulp.task('test', ['pre-test'], () => {
   return gulp.src(TEST_SOURCES)
       .pipe(jasmine())
-      .pipe(istanbul.writeReports())
+      .pipe(istanbul.writeReports());
 });
 
 gulp.task('lint', () => {

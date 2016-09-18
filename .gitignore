@@ -35,5 +35,5 @@ node_modules
 # Configuration files
 config.json
 
-# Output
+# npm Output
 dist

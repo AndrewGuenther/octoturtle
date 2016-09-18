@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/AndrewGuenther/octoturtle.svg?branch=master)](https://travis-ci.org/AndrewGuenther/octoturtle)
 [![Coverage Status](https://coveralls.io/repos/github/AndrewGuenther/octoturtle/badge.svg?branch=master)](https://coveralls.io/github/AndrewGuenther/octoturtle?branch=master)
+[![Dependency Freshness](https://david-dm.org/AndrewGuenther/octoturtle.svg)]()
 
 Octoturtle is a dead simple fluent library for responding to Github
 [webhooks][1]. Primarily inspired by Docker's awesome issue and PR auditor

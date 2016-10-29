@@ -12,7 +12,7 @@ specify and enforce a set of rules for contributing to a repository.
 Here's a simple Octoturtle rule based on Docker's #dibs policy for claiming
 issues:
 ```javascript
-const octoturtle = require('../lib/octoturtle.js');
+const octoturtle = require('octoturtle');
 const config = require('./config.json');
 
 const WhenAn = WhenA = octoturtle;

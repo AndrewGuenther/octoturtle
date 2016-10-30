@@ -1,4 +1,0 @@
-lambdas:
-  octoturtle-handler:
-    description: Endpoint for GitHub webhook events.
-    code: index.js

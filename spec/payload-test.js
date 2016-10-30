@@ -15,9 +15,6 @@ describe('Provides convenience functions for accessing webhook Payload fields', 
     expect(Payload.prototype.isPrototypeOf(issuePayload)).toEqual(true);
   });
 
-  console.log(issuePayload.action);
-  console.log(issuePayload.getAction());
-
   const getters = [
     { func: issuePayload.getAction.bind(issuePayload),
       value: issuePayload.action },

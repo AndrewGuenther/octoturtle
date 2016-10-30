@@ -19,6 +19,8 @@ config.json
 
 # Source files
 lib
+spec
+gulpfile.js
 
 # Documentation
 docs

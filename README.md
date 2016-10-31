@@ -15,10 +15,10 @@ issues:
 const octoturtle = require('octoturtle');
 const config = require('./config.json');
 
-const WhenAn = WhenA = octoturtle;
+const whenAn = octoturtle;
 const github = new octoturtle.Github(config.GITHUB_USER, config.GITHUB_TOKEN);
 
-const hook = WhenAn('issues').is('opened').to('octoturtle');
+const hook = whenAn('issues').is('opened').to('octoturtle');
 
 /**
  * Checks if the body of the item contains the string "dibs".
@@ -30,6 +30,26 @@ function bodyContainsDibs(event, payload) {
 }
 
 hook.if(bodyContainsDibs, github.applyLabels(['dibs']));
+```
+
+## Installation
+
+You can deploy your own Octoturtle auditor easily using either Express or with
+Lambda using Gordon.
+
+First, install [Yeoman](http://yeoman.io) and generator-octoturtle using
+[npm](https://www.npmjs.com/) (we assume you have pre-installed
+[node.js](https://nodejs.org/)).
+
+```bash
+npm install -g yo
+npm install -g generator-octoturtle
+```
+
+Then generate your new auditor:
+
+```bash
+yo octoturtle
 ```
 
 [1]: https://developer.github.com/webhooks/

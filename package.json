@@ -45,7 +45,7 @@
     "gulp-eslint": "^3.0.1",
     "gulp-istanbul": "^1.1.1",
     "gulp-jasmine": "^2.4.0",
-    "gulp-jsdoc3": "^0.3.0",
+    "gulp-jsdoc3": "^1.0.0",
     "minami": "^1.1.1",
     "proxyquire": "^1.7.10"
   }

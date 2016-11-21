@@ -27,8 +27,6 @@
   "author": "Andrew Guenther",
   "license": "MIT",
   "dependencies": {
-    "colors": "^1.1.2",
-    "commander": "^2.9.0",
     "request": "^2.75.0"
   },
   "devDependencies": {

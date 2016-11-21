@@ -37,9 +37,9 @@ hook.if(bodyContainsDibs, github.applyLabels(['dibs']));
 You can deploy your own Octoturtle auditor easily using either Express or with
 Lambda using Gordon.
 
-First, install [Yeoman](http://yeoman.io) and generator-octoturtle using
-[npm](https://www.npmjs.com/) (we assume you have pre-installed
-[node.js](https://nodejs.org/)).
+First, install [Yeoman][4] and [generator-octoturtle][5] using
+[npm][6] (we assume you have pre-installed
+[node.js][7]).
 
 ```bash
 npm install -g yo
@@ -55,3 +55,7 @@ yo octoturtle
 [1]: https://developer.github.com/webhooks/
 [2]: https://www.github.com/GordonTheTurtle
 [3]: https://www.github.com/Docker
+[4]: http://yeoman.io
+[5]: https://github.com/AndrewGuenther/generator-octoturtle
+[6]: https://www.npmjs.com/
+[7]: https://nodejs.org/

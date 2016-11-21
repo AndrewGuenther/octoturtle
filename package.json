@@ -2,6 +2,12 @@
   "name": "octoturtle",
   "version": "1.0.0",
   "description": "Set up auditing rules for your Github repository",
+  "homepage": "http://ajguenther.com/octoturtle",
+  "author": {
+    "name": "Andrew Guenther",
+    "email": "guenther.andrew.j@gmail.com",
+    "url": "http://ajguenther.com"
+  },
   "main": "./dist/octoturtle.js",
   "engines": {
     "node": ">=6.0.0"
@@ -14,17 +20,13 @@
     "coveralls": "gulp coveralls",
     "prepublish": "gulp dist"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://www.gitub.com/AndrewGuenther/octoturtle.git"
-  },
+  "repository": "AndrewGuenther/octoturtle",
   "keywords": [
     "github",
     "auditing",
     "bot",
     "octoturtle"
   ],
-  "author": "Andrew Guenther",
   "license": "MIT",
   "dependencies": {
     "request": "^2.75.0"

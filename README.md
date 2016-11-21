@@ -1,8 +1,6 @@
 # Octoturtle
 
-[![Build Status](https://travis-ci.org/AndrewGuenther/octoturtle.svg?branch=master)](https://travis-ci.org/AndrewGuenther/octoturtle)
-[![Coverage Status](https://coveralls.io/repos/github/AndrewGuenther/octoturtle/badge.svg?branch=master)](https://coveralls.io/github/AndrewGuenther/octoturtle?branch=master)
-[![Dependency Freshness](https://david-dm.org/AndrewGuenther/octoturtle.svg)]()
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 
 Octoturtle is a dead simple fluent library for responding to Github
 [webhooks][1]. Primarily inspired by Docker's awesome issue and PR auditor
@@ -59,3 +57,12 @@ yo octoturtle
 [5]: https://github.com/AndrewGuenther/generator-octoturtle
 [6]: https://www.npmjs.com/
 [7]: https://nodejs.org/
+
+[npm-image]: https://badge.fury.io/js/octoturtle.svg
+[npm-url]: https://npmjs.org/package/octoturtle
+[travis-image]: https://travis-ci.org/AndrewGuenther/octoturtle.svg?branch=master
+[travis-url]: https://travis-ci.org/AndrewGuenther/octoturtle
+[daviddm-image]: https://david-dm.org/AndrewGuenther/octoturtle.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/AndrewGuenther/octoturtle
+[coveralls-image]: https://coveralls.io/repos/AndrewGuenther/octoturtle/badge.svg
+[coveralls-url]: https://coveralls.io/r/AndrewGuenther/octoturtle

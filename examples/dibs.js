@@ -1,18 +1,18 @@
-const octoturtle = require('../lib/octoturtle.js');
+const octoturtle = require('octoturtle');
 const config = require('./config.json');
 
-const WhenAn = WhenA = octoturtle;
+const whenAn = octoturtle;
 const github = new octoturtle.Github(config.GITHUB_USER, config.GITHUB_TOKEN);
 
-const hook = WhenAn('issues').is('opened').to('octoturtle');
+const hook = whenAn('issue_comment').is('created').to('octoturtle');
 
 /**
- * Checks if the body of the item contains the string "dibs".
+ * Checks if the body of the item contains the string "#dibs".
  * @param {String} event The type of event
  * @param {Payload} payload The hook payload
  */
-function bodyContainsDibs(event, payload) {
-  payload.getIssueBody().includes('dibs');
+function commentContainsDibs(event, payload) {
+  payload.getCommentBody().includes('#dibs');
 }
 
-hook.if(bodyContainsDibs, github.applyLabels(['dibs']));
+hook.if(commentContainsDibs, github.applyLabels(['status/claimed']));

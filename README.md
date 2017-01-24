@@ -20,11 +20,12 @@ const hook = whenAn('issue_comment').is('created').to('octoturtle');
 
 /**
  * Checks if the body of the item contains the string "#dibs".
- * @param {String} event The type of event
- * @param {Payload} payload The hook payload
+ * @param  {String} event The type of event
+ * @param  {Payload} payload The hook payload
+ * @return {Boolean} whether the comment contains "#dibs"
  */
 function commentContainsDibs(event, payload) {
-  payload.getCommentBody().includes('#dibs');
+  return payload.getCommentBody().includes('#dibs');
 }
 
 hook.if(commentContainsDibs, github.applyLabels(['status/claimed']));

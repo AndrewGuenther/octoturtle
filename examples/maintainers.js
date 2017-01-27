@@ -1,20 +1,15 @@
 const octoturtle = require('octoturtle');
 const config = require('./config.json');
 
-const whenA = octoturtle;
-const github = new octoturtle.Github(config.GITHUB_USER, config.GITHUB_TOKEN);
-
+const whenA = octoturtle(config.GITHUB_USER, config.GITHUB_TOKEN);
 const hook = whenA('pull_request').is('opened').to('octoturtle');
 
 /**
  * Reads the MAINTAINERS file from master and adds a reviewer to the opened PR.
- *
- * @param {String} event The type of event
- * @param {Payload} payload The hook payload
  */
-function addMaintainerAsReviewer(event, payload) {
+function addMaintainerAsReviewer(event, payload, github) {
   // Underneath, this makes a request that could be cached.
-  const maintainerFile = payload.getFileContents('MAINTAINERS');
+  const maintainerFile = github.getFileContents('MAINTAINERS');
   const maintainerString = /^\* @([a-zA-z0-9_-]+)/g;
 
   const maintainers = maintainerFile.match(maintainerString);
@@ -26,3 +21,5 @@ function addMaintainerAsReviewer(event, payload) {
 }
 
 hook.do(addMaintainerAsReviewer);
+
+module.exports = hook;

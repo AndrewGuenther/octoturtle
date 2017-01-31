@@ -1,4 +1,4 @@
-const Hook = require('../lib/payload');
+const Hook = require('../lib/context');
 const util = require('./helpers/response-helper');
 const proxyquire = require('proxyquire');
 
@@ -20,7 +20,7 @@ describe('Generates Github API reactions for hooks', () => {
   it('builds functions to apply labels', () => {
     const reaction = github.applyLabels(['test']);
     const response = util.buildResponse('issuesopened');
-    reaction('issues', Hook.extendPayload(response));
+    reaction('issues', Hook.extendContext(response));
     expect(github.sendRequest).toHaveBeenCalledWith(
         response.issue.labels_url,
         ['test']);
@@ -29,7 +29,7 @@ describe('Generates Github API reactions for hooks', () => {
   it('builds functions to send comments', () => {
     const reaction = github.addComment('test');
     const response = util.buildResponse('issuesopened');
-    reaction('issues', Hook.extendPayload(response));
+    reaction('issues', Hook.extendContext(response));
     expect(github.sendRequest).toHaveBeenCalledWith(
         response.issue.comments_url,
         'test');
@@ -45,7 +45,7 @@ describe('Generates Github API reactions for hooks', () => {
     const reaction = github.postStatus(status.state, status.target_url,
         status.description, status.context);
     const response = util.buildResponse('propened');
-    reaction('pull_request', Hook.extendPayload(response));
+    reaction('pull_request', Hook.extendContext(response));
     expect(github.sendRequest).toHaveBeenCalledWith(
         response.pull_request.statuses_url, status);
   });

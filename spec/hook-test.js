@@ -1,6 +1,6 @@
 const Hook = require('../lib/hook');
 
-describe('A set of conditions and reactions to a payload', () => {
+describe('A set of conditions and reactions to a context', () => {
   it('is a fluent interface', () => {
     const hook = new Hook('issues');
     expect(hook.is()).toBe(hook);
@@ -16,19 +16,19 @@ describe('A set of conditions and reactions to a payload', () => {
         .to('AndrewGuenther/octoturtle')
         .by('AndrewGuenther')
         .do(() => { return true; });
-    const payload = {
+    const context = {
       action: 'created',
       repository: { name: 'AndrewGuenther/octoturtle' },
       sender: { login: 'AndrewGuenther' },
     };
-    expect(hook.eval('pull_request', payload)).toEqual(false);
-    expect(hook.eval('issues', Object.assign({}, payload, {
+    expect(hook.eval('pull_request', context)).toEqual(false);
+    expect(hook.eval('issues', Object.assign({}, context, {
       action: 'resolved',
     }))).toEqual(false);
-    expect(hook.eval('issues', Object.assign({}, payload, {
+    expect(hook.eval('issues', Object.assign({}, context, {
       repository: { name: 'gustave/gustave' },
     }))).toEqual(false);
-    expect(hook.eval('issues', Object.assign({}, payload, {
+    expect(hook.eval('issues', Object.assign({}, context, {
       sender: { login: 'michaellady' },
     }))).toEqual(false);
   });

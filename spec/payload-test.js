@@ -1,45 +1,45 @@
-const Payload = require('../lib/payload');
+const Context = require('../lib/context');
 const util = require('./helpers/response-helper');
 
-describe('Provides convenience functions for accessing webhook Payload fields', () => {
-  const issuePayload = util.buildResponse('issuesopened');
-  Payload.extendPayload(issuePayload);
+describe('Provides convenience functions for accessing webhook Context fields', () => {
+  const issueContext = util.buildResponse('issuesopened');
+  Context.extendContext(issueContext);
 
-  const prPayload = util.buildResponse('propened');
-  Payload.extendPayload(prPayload);
+  const prContext = util.buildResponse('propened');
+  Context.extendContext(prContext);
 
-  const commentPayload = util.buildResponse('issuecomment');
-  Payload.extendPayload(commentPayload);
+  const commentContext = util.buildResponse('issuecomment');
+  Context.extendContext(commentContext);
 
-  it('adds getters to existing Payload objects', () => {
-    expect(Payload.prototype.isPrototypeOf(issuePayload)).toEqual(true);
+  it('adds getters to existing Context objects', () => {
+    expect(Context.prototype.isPrototypeOf(issueContext)).toEqual(true);
   });
 
   const getters = [
-    { func: issuePayload.getAction.bind(issuePayload),
-      value: issuePayload.action },
-    { func: issuePayload.getRepo.bind(issuePayload),
-      value: issuePayload.repository.name },
-    { func: issuePayload.getRepoOwner.bind(issuePayload),
-      value: issuePayload.repository.owner.login },
-    { func: issuePayload.getSender.bind(issuePayload),
-      value: issuePayload.sender.login },
-    { func: issuePayload.getIssueNumber.bind(issuePayload),
-      value: issuePayload.issue.number },
-    { func: issuePayload.getIssueBody.bind(issuePayload),
-      value: issuePayload.issue.body },
-    { func: commentPayload.getCommentBody.bind(commentPayload),
-      value: commentPayload.comment.body },
-    { func: issuePayload.getRepoUrl.bind(issuePayload),
-      value: issuePayload.repository.url },
-    { func: issuePayload.getIssueUrl.bind(issuePayload),
-      value: issuePayload.issue.url },
-    { func: issuePayload.getLabelUrl.bind(issuePayload),
-      value: issuePayload.issue.labels_url },
-    { func: issuePayload.getCommentUrl.bind(issuePayload),
-      value: issuePayload.issue.comments_url },
-    { func: prPayload.getStatusUrl.bind(prPayload),
-      value: prPayload.pull_request.statuses_url },
+    { func: issueContext.getAction.bind(issueContext),
+      value: issueContext.action },
+    { func: issueContext.getRepo.bind(issueContext),
+      value: issueContext.repository.name },
+    { func: issueContext.getRepoOwner.bind(issueContext),
+      value: issueContext.repository.owner.login },
+    { func: issueContext.getSender.bind(issueContext),
+      value: issueContext.sender.login },
+    { func: issueContext.getIssueNumber.bind(issueContext),
+      value: issueContext.issue.number },
+    { func: issueContext.getIssueBody.bind(issueContext),
+      value: issueContext.issue.body },
+    { func: commentContext.getCommentBody.bind(commentContext),
+      value: commentContext.comment.body },
+    { func: issueContext.getRepoUrl.bind(issueContext),
+      value: issueContext.repository.url },
+    { func: issueContext.getIssueUrl.bind(issueContext),
+      value: issueContext.issue.url },
+    { func: issueContext.getLabelUrl.bind(issueContext),
+      value: issueContext.issue.labels_url },
+    { func: issueContext.getCommentUrl.bind(issueContext),
+      value: issueContext.issue.comments_url },
+    { func: prContext.getStatusUrl.bind(prContext),
+      value: prContext.pull_request.statuses_url },
   ];
   for (const getter of getters) {
     it(`exposes the ${getter.func.name.replace('get', '')}`, () => {

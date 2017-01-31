@@ -9,13 +9,13 @@ const hook = whenAn('issue').is('created').to('octoturtle');
  * Reads the ISSUE_TEMPLATE.md file from master and ensures the issue contains
  * all markdown headings present.
  */
-function doesNotFollowIssueTemplate(event, payload, github) {
+function doesNotFollowIssueTemplate(event, context, github) {
   // Underneath, this makes a request that could be cached.
   const template = github.getIssuesTemplate();
   const mdHeadings = /^#+ (.*)$/g;
 
   const headings = template.match(mdHeadings);
-  const issueBody = payload.getIssueBody();
+  const issueBody = context.getIssueBody();
   let matchesAll = true;
 
   for (const heading of headings) {

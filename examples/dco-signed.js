@@ -9,7 +9,7 @@ const hook = whenA('pull_request').is('opened', 'edited').to('octoturtle');
  * Ensures that all commits in the pull request are signed with a developer
  * certificate of origin.
  */
-function commitsDoNotContainDCO(event, payload, github) {
+function commitsDoNotContainDCO(event, context, github) {
   // Underneath, this makes a request that could be cached.
   const commits = github.getCommits();
 

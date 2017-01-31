@@ -1,17 +1,17 @@
-const octoturtle = require('octoturtle');
+const whenAn = require('octoturtle');
 const addComment = require('octoturtle/actions').addComment;
+const github = require('octoturtle/github')(config.GITHUB_USER, config.GITHUB_TOKEN);
 const config = require('./config.json');
 
-const whenAn = octoturtle(config.GITHUB_USER, config.GITHUB_TOKEN);
 const hook = whenAn('issue').is('created').to('octoturtle');
 
 /**
  * Reads the ISSUE_TEMPLATE.md file from master and ensures the issue contains
  * all markdown headings present.
  */
-function doesNotFollowIssueTemplate(event, context, github) {
+function doesNotFollowIssueTemplate(event, context) {
   // Underneath, this makes a request that could be cached.
-  const template = github.getIssuesTemplate();
+  const template = github.getIssuesTemplate(context);
   const mdHeadings = /^#+ (.*)$/g;
 
   const headings = template.match(mdHeadings);

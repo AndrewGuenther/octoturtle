@@ -1,8 +1,6 @@
-const octoturtle = require('octoturtle');
+const whenAn = require('octoturtle');
 const applyLabels = require('octoturtle/actions').applyLabels;
 const config = require('./config.json');
-
-const whenAn = octoturtle(config.GITHUB_USER, config.GITHUB_TOKEN);
 
 const hook = whenAn('issue_comment').is('created').to('octoturtle');
 

@@ -1,17 +1,17 @@
-const octoturtle = require('octoturtle');
+const whenA = require('octoturtle');
 const addComment = require('octoturtle/actions').addComment;
+const github = require('octoturtle/github')(config.GITHUB_USER, config.GITHUB_TOKEN);
 const config = require('./config.json');
 
-const whenA = octoturtle(config.GITHUB_USER, config.GITHUB_TOKEN);
 const hook = whenA('pull_request').is('opened', 'edited').to('octoturtle');
 
 /**
  * Ensures that all commits in the pull request are signed with a developer
  * certificate of origin.
  */
-function commitsDoNotContainDCO(event, context, github) {
+function commitsDoNotContainDCO(event, context) {
   // Underneath, this makes a request that could be cached.
-  const commits = github.getCommits();
+  const commits = github.getCommits(context);
 
   const commitMessages = commits.forEach((commit) => { return commit.commit.message; });
   const dco = /Signed-off-by: /;

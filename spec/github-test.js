@@ -2,56 +2,51 @@ const Hook = require('../lib/context');
 const util = require('./helpers/response-helper');
 const proxyquire = require('proxyquire');
 
-const requestSpy = jasmine.createSpy();
-const Github = proxyquire('../lib/github', {
-  request: requestSpy,
-});
-
 describe('Generates Github API reactions for hooks', () => {
+  let requestSpy;
   let github;
   const USER = 'AndrewGuenther';
   const TOKEN = 'sEcReT';
 
   beforeEach(() => {
-    github = new Github(USER, TOKEN);
-    spyOn(github, 'sendRequest');
+    requestSpy = jasmine.createSpy('request');
+    github = proxyquire('../lib/github', {
+      request: requestSpy,
+    })(USER, TOKEN);
+    spyOn(github, 'sendRequest').and.callThrough();
   });
 
   it('builds functions to apply labels', () => {
-    const reaction = github.applyLabels(['test']);
-    const response = util.buildResponse('issuesopened');
-    reaction('issues', Hook.extendContext(response));
+    const context = Hook.extendContext(util.buildResponse('issuesopened'));
+    github.applyLabels(context, ['test']);
     expect(github.sendRequest).toHaveBeenCalledWith(
-        response.issue.labels_url,
+        context.issue.labels_url,
         ['test']);
   });
 
   it('builds functions to send comments', () => {
-    const reaction = github.addComment('test');
-    const response = util.buildResponse('issuesopened');
-    reaction('issues', Hook.extendContext(response));
+    const context = Hook.extendContext(util.buildResponse('issuesopened'));
+    github.addComment(context, 'test');
     expect(github.sendRequest).toHaveBeenCalledWith(
-        response.issue.comments_url,
+        context.issue.comments_url,
         'test');
   });
 
   it('builds functions to post statuses', () => {
+    const context = Hook.extendContext(util.buildResponse('propened'));
     const status = {
       state: 'success',
       target_url: 'http://www.github.com/AndrewGuenther/octoturtle',
       description: 'Tests are passing!',
-      context: 'octoturtle',
+      statusContext: 'octoturtle',
     };
-    const reaction = github.postStatus(status.state, status.target_url,
-        status.description, status.context);
-    const response = util.buildResponse('propened');
-    reaction('pull_request', Hook.extendContext(response));
+    github.postStatus(context, status.state, status.target_url,
+        status.description, status.statusContext);
     expect(github.sendRequest).toHaveBeenCalledWith(
-        response.pull_request.statuses_url, status);
+        context.pull_request.statuses_url, status);
   });
 
   it('can send raw requests to the Github API', () => {
-    github = new Github(USER, TOKEN);
     const expectedOptions = {
       auth: { user: USER, pass: TOKEN },
       method: 'POST',
